@@ -1,8 +1,8 @@
 <?php
 
-$dbServername = 'slovnik.unas.cz';
+$dbServername = 'localhost';
 $dbUsername = 'root';
 $dbPassword = '';
-$dbName = 'slovnikunasc3604';
+$dbName = 'slovnik.unas.cz';
 
 $conn = mysqli_connect($dbServername,$dbUsername,$dbPassword,$dbName);
