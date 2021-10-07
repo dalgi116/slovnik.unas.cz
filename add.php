@@ -1,6 +1,6 @@
 <?php
 include_once 'inc/dbh.php';
-// add isset statment to GET function
+
 $pushUser = $_GET['user'];
 $pushCzech = $_GET['czech'];
 $pushEnglish = $_GET['english'];
