@@ -6,32 +6,32 @@ $pushCzech = $_GET['czech'];
 $pushEnglish = $_GET['english'];
 $pushDescription = $_GET['description'];
 
-$trySql = 'SELECT * FROM words WHERE cz = $pushCzech AND en = $pushEnglish;';
-$tryResult = mysqli_query($conn, $trySql);
+$trySql = "SELECT * FROM words WHERE cz = '$pushCzech' AND en = '$pushEnglish';";
+$tryResult = $conn->query($trySql);
 
 if ($pushCzech == '') {
-    header('Location: /list.php?dataPush=errorEmptyArgument');
+    header('Location: add.html?dataPush=errorEmptyArgument');
 } 
 else {
     if ($pushEnglish == '') {
-        header('Location: /list.php?dataPush=errorEmptyArgument');
+        header('Location: add.html?dataPush=errorEmptyArgument');
     }
     else {
-        if (mysqli_num_rows($tryResult) > 0) {
-            header('Location: /list.php?dataPush=errorWordAlreadyUsed');
+        if ($tryResult->num_rows > 0) {
+            header('Location: add.html?dataPush=errorWordAlreadyUsed');
         }
         else {
             if (strlen($pushCzech) > 20) {
-                header('Location: /list.php?dataPush=errorTooLongArgument');
+                header('Location: add.html?dataPush=errorTooLongArgument');
             }
             else {
                 if (strlen($pushEnglish) > 20) {
-                    header('Location: /list.php?dataPush=errorTooLongArgument');
+                    header('Location: add.html?dataPush=errorTooLongArgument');
                 }
                 else {
-                    $mainSql = 'INSERT INTO words (user, cz, en, des, date) VALUES ($pushUser, $pushCzech, $pushEnglish, $pushDescription, now());';
-                    $mainResult = mysqli_query($conn, $mainSql);
-                    header('Location: /list.php?dataPush=sucess');
+                    $mainSql = "INSERT INTO words (user, cz, en, des, date) VALUES ('$pushUser', '$pushCzech', '$pushEnglish', '$pushDescription', now());";
+                    $conn->query($mainSql);
+                    header('Location: list.php?dataPush=sucess');
                 }
             }
         }
