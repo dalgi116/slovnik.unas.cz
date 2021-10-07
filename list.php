@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 
- <?php
-    //$sql_getPwd = "SELECT * FROM users WHERE name"
-
-    
- ?>
+<?php
+include_once 'inc/dbh.php';
+?>
 
 
 
@@ -50,7 +48,28 @@
         </section>
 
         <section class="words">
-
+            <table>
+                <tr>
+                    <th>English</th>
+                    <th>Czech</th>
+                    <th>Description</th>
+                    <th>Date of add</th>
+                </tr>
+            <?php
+            $sqlGetItems = "SELECT * FROM  words;";
+            $sqlResult = $conn->query($sqlGetItems);
+            if ($sqlResult->num_rows > 0) {
+                while ($word = $sqlResult->fetch_assoc()) {
+                    echo '<tr>';
+                    echo '<td>' . $word['en'] . '</td>';
+                    echo '<td>' . $word['cz'] . '</td>';
+                    echo '<td>' . $word['des'] . '</td>';
+                    echo '<td>' . $word['date'] . '</td>';
+                    echo '</tr>';
+                }
+            }
+            ?>
+            </table>
         </section>
     </body>
 </html>
