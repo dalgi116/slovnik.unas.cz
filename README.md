@@ -2,7 +2,6 @@
 A private czech-english vocabulary site. Runs using PHP.
 
 ## To do list:
-- sort function
 - log in function
 - crate user function
 - css site view

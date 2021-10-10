@@ -24,22 +24,28 @@ include_once 'inc/dbh.php';
             <h2>Search words</h2>
             <div class="search-words">
                 <form action="list.php">
-                    <label for="search"><b>Search: </b></label>
-                    <input type="text" id="search" name="search">
+                    <input type="text" name="search"><br>
                     <input type="submit" class="btn">
                 </form>
             </div>
             <div class="sort-words">
                 <form action="list.php">
-                    <b>Sort by:</b>
-                    <input type="radio" id="sort-name" name="sort" value="name">
-                    <label for="sort-name">Name</label>
-                    <input type="radio" id="sort-date" name="sort" value="date">
+                    <h2>Sort words</h2>
+                    <input type="radio" id="sort-name-en" name="sortBy" value="en">
+                    <label for="sort-name-en">Name-EN</label>
+                    <input type="radio" id="sort-name-cz" name="sortBy" value="cz">
+                    <label for="sort-name-cz">Name-CZ</label>
+                    <input type="radio" id="sort-date" name="sortBy" value="date">
                     <label for="sort-date">Date</label>
+                    <br>
+                    <input type="radio" id="sort-ascending" name="sortOrder" value="asc">
+                    <label for="sort-ascending">Ascending</label>
+                    <input type="radio" id="sort-descending" name="sortOrder" value="desc">
+                    <label for="sort-descending">Descending</label><br>
                     <input type="submit" class="btn">
                 </form>
             </div>
-            <br>
+            <br><br>
             <div class="restore-words">
                 <form action="list.php">
                     <input type="submit" class="btn" value="RESTORE ORIGINAL">
@@ -67,7 +73,22 @@ include_once 'inc/dbh.php';
                 $sqlGetItems = "SELECT * FROM  words WHERE cz = '$searchedWord' OR en = '$searchedWord';";    
             }
             else {
-                $sqlGetItems = "SELECT * FROM  words;";
+                if (isset($_GET['sortBy'])) {
+                    $sortBy = $_GET['sortBy'];
+                    if (isset($_GET['sortOrder'])) {
+                        $sortOrder = $_GET['sortOrder'];
+                    }
+                    else {
+                        $sortOrder = 'asc';
+                    }
+                }
+                else {
+                    $sortBy = 'date';
+                    $sortOrder = 'asc';
+                }
+
+                $sqlGetItems = "SELECT * FROM  words ORDER BY " . $sortBy . " " . $sortOrder . ";";
+                
             }
             $sqlResult = $conn->query($sqlGetItems);
             if ($sqlResult->num_rows > 0) {
