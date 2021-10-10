@@ -16,12 +16,15 @@
         </section>
 
         <section class="sign-in">
-            <form action="list.php">
-                <label for="pwd">Sign in</label><br>
-                <input type="password" name="user" id="pwd"><br>
+            <h2>Sign in</h2>
+            <form action="list.php" method="POST">
+                <label for="user">Username: </label><br>
+                <input type="text" name="user" id="user"><br>
+                <label for="pwd">Password: </label><br>
+                <input type="password" name="pwd" id="pwd"><br>
                 <input type="submit" class="main-btn">
             </form>
-            <br>
+            <p>OR</p>
             <form action="list.php">
                 <input type="submit" class="btn" value="Sign as guest">
             </form>

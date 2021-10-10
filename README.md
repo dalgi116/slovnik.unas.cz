@@ -6,7 +6,6 @@ A private czech-english vocabulary site. Runs using PHP.
 - sort function
 - log in function
 - crate user function
-- GET methods change to POST -> can't swap users by URL
 - css site view
 - bookmarks
 - learning programs

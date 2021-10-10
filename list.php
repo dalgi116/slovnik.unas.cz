@@ -14,9 +14,9 @@ include_once 'inc/dbh.php';
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <section class="back-btn">
+        <section class="log-out">
             <form action="index.html">
-                <input type="submit" class="exit-btn" value="BACK">
+                <input type="submit" class="log-out-btn" value="Log out">
             </form>
         </section>
 
@@ -41,14 +41,14 @@ include_once 'inc/dbh.php';
             </div>
             <div class="add-words">
                 <h2>Add words</h2>
-                <form action="add.php" method="GET">
+                <form action="add.php" method="POST">
                     <input name="user" type="hidden" value="admin">
                     <label for="add-english">English: </label><br>
                     <input name="english" type="text" id="add-english"><br>
                     <label for="add-czech">Czech: </label><br>
                     <input name="czech" type="text" id="add-czech"><br>
                     <label for="add-description">Description: </label><br>
-                    <textarea name="description" id="add-description" cols="30" rows="5"></textarea><br>
+                    <input name="description" id="add-description"><br>
                     <input type="submit" class="btn">
                 </form>
              </div>
