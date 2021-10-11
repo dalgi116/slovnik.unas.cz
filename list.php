@@ -32,7 +32,7 @@ if (!isset($user)) {
     </head>
     <body>
         <h1>English - Czech vocabulary</h1>
-        <section class="log-out">
+        <section class="right-bar">
             <?php
             if (isset($user)) {
                 echo '<p><b>Active user: </b>' . $user . '</p>';
@@ -42,7 +42,7 @@ if (!isset($user)) {
                 <input type="submit" class="log-out-btn" value="Log out">
             </form>
         </section>
-        <section class="settings">
+        <section class="left-bar">
             <h2>Search words</h2>
             <div class="search-words">
                 <form action="list.php">
