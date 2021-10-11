@@ -36,6 +36,18 @@ if (!isset($user)) {
             <?php
             if (isset($user)) {
                 echo '<p><b>Active user: </b>' . $user . '</p>';
+
+                $sqlGetRole = "SELECT * FROM users WHERE user = '$user';";
+                $userDb = $conn->query($sqlGetRole);
+                $userParams = $userDb->fetch_assoc();
+                $userRole = $userParams['role'];
+                $_SESSION['userRole'] = $userRole;
+                if ($userRole == 'superadmin') {
+                    echo '
+                    <form action="manageUsers.php" method="POST">
+                        <input type="submit" class="btn" name="confirm" value="Manage users">
+                    </form>';
+                }
             }
             ?>
             <form action="index.php">
@@ -43,16 +55,34 @@ if (!isset($user)) {
             </form>
         </section>
         <section class="left-bar">
-            <h2>Search words</h2>
+           <?php
+            if (isset($user)) {
+                echo '
+                <div class="add-words">
+                    <h2>Add words</h2>
+                    <form action="add.php" method="POST">
+                        <input name="user" type="hidden" value="' . $user . '">
+                        <label for="add-english">English: </label><br>
+                        <input name="english" type="text" id="add-english"><br>
+                        <label for="add-czech">Czech: </label><br>
+                        <input name="czech" type="text" id="add-czech"><br>
+                        <label for="add-description">Description: </label><br>
+                        <input name="description" id="add-description"><br>
+                        <input type="submit" class="btn">
+                    </form>
+                </div>';
+            }
+            ?>
             <div class="search-words">
+                <h2>Search words</h2>
                 <form action="list.php">
                     <input type="text" name="search"><br>
                     <input type="submit" class="btn">
                 </form>
             </div>
             <div class="sort-words">
+                <h2>Sort words</h2>
                 <form action="list.php">
-                    <h2>Sort words</h2>
                     <input type="radio" id="sort-name-en" name="sortBy" value="en">
                     <label for="sort-name-en">Name-EN</label>
                     <input type="radio" id="sort-name-cz" name="sortBy" value="cz">
@@ -73,24 +103,6 @@ if (!isset($user)) {
                     <input type="submit" class="btn" value="RESTORE ORIGINAL">
                 </form>
             </div>
-            <?php
-            if (isset($user)) {
-                echo '
-                <div class="add-words">
-                    <h2>Add words</h2>
-                    <form action="add.php" method="POST">
-                        <input name="user" type="hidden" value="' . $user . '">
-                        <label for="add-english">English: </label><br>
-                        <input name="english" type="text" id="add-english"><br>
-                        <label for="add-czech">Czech: </label><br>
-                        <input name="czech" type="text" id="add-czech"><br>
-                        <label for="add-description">Description: </label><br>
-                        <input name="description" id="add-description"><br>
-                        <input type="submit" class="btn">
-                    </form>
-                </div>';
-            }
-             ?>
         </section>
 
         <section class="words">
