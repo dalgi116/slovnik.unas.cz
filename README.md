@@ -8,3 +8,4 @@ A private czech-english vocabulary site. Runs using PHP.
 - bookmarks
 - learning programs
 - add an intro to index.html
+- separate words to sections
