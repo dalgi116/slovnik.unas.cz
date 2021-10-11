@@ -30,15 +30,18 @@ INSERT INTO words (
 CREATE TABLE users (
     id int(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     user varchar(20) NOT NULL,
-    pwd text NOT NULL
+    pwd text NOT NULL,
+    role varchar(20) NOT NULL
 );
 
 /* Test insert words */
 
 INSERT INTO users (
     user,
-    pwd
+    pwd,
+    role
 ) VALUES (
     'admin',
-    '01'
+    '01',
+    'superadmin'
 );
