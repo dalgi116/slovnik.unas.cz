@@ -1,11 +1,28 @@
-<!DOCTYPE html>
-
 <?php
+session_start();
 include_once 'inc/dbh.php';
+
+if (isset($_POST['user']) and isset($_POST['pwd'])) {
+    $_SESSION['user'] = $_POST['user'];
+    $user = $_SESSION['user'];
+    $pwd = $_POST['pwd'];
+    if ($user == '' or $pwd == '') {
+        header('Location: index.php?login=errorEmtpyArgument');
+    }
+    else {
+        $sqlGetUser = "SELECT * FROM users WHERE user = '$user' AND pwd = '$pwd'";
+        $usersFromDb = $conn->query($sqlGetUser);
+        if ($usersFromDb->num_rows == 0) {
+            header('Location: index.php?login=errorIncorrectArguments');
+        }
+    }
+}
+if (!isset($user)) {
+    $user = $_SESSION['user'];
+}
 ?>
 
-
-
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -16,7 +33,12 @@ include_once 'inc/dbh.php';
     <body>
         <h1>English - Czech vocabulary</h1>
         <section class="log-out">
-            <form action="index.html">
+            <?php
+            if (isset($user)) {
+                echo '<p><b>Active user: </b>' . $user . '</p>';
+            }
+            ?>
+            <form action="index.php">
                 <input type="submit" class="log-out-btn" value="Log out">
             </form>
         </section>
@@ -51,19 +73,24 @@ include_once 'inc/dbh.php';
                     <input type="submit" class="btn" value="RESTORE ORIGINAL">
                 </form>
             </div>
-            <div class="add-words">
-                <h2>Add words</h2>
-                <form action="add.php" method="POST">
-                    <input name="user" type="hidden" value="admin">
-                    <label for="add-english">English: </label><br>
-                    <input name="english" type="text" id="add-english"><br>
-                    <label for="add-czech">Czech: </label><br>
-                    <input name="czech" type="text" id="add-czech"><br>
-                    <label for="add-description">Description: </label><br>
-                    <input name="description" id="add-description"><br>
-                    <input type="submit" class="btn">
-                </form>
-             </div>
+            <?php
+            if (isset($user)) {
+                echo '
+                <div class="add-words">
+                    <h2>Add words</h2>
+                    <form action="add.php" method="POST">
+                        <input name="user" type="hidden" value="' . $user . '">
+                        <label for="add-english">English: </label><br>
+                        <input name="english" type="text" id="add-english"><br>
+                        <label for="add-czech">Czech: </label><br>
+                        <input name="czech" type="text" id="add-czech"><br>
+                        <label for="add-description">Description: </label><br>
+                        <input name="description" id="add-description"><br>
+                        <input type="submit" class="btn">
+                    </form>
+                </div>';
+            }
+             ?>
         </section>
 
         <section class="words">

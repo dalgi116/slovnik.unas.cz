@@ -1,4 +1,4 @@
-/* Create a table */
+/* Create a table words */
 
 CREATE TABLE words (
     id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -9,7 +9,7 @@ CREATE TABLE words (
     date date NOT NULL
 );
 
-/* Test insert */
+/* Test insert words */
 
 INSERT INTO words (
     user,
@@ -23,4 +23,22 @@ INSERT INTO words (
     'testEn',
     'testDes',
     now()
+);
+
+/* Create a table users */
+
+CREATE TABLE users (
+    id int(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user varchar(20) NOT NULL,
+    pwd text NOT NULL
+);
+
+/* Test insert words */
+
+INSERT INTO users (
+    user,
+    pwd
+) VALUES (
+    'admin',
+    '01'
 );
