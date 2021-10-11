@@ -4,7 +4,6 @@ A private czech-english vocabulary site. Runs using PHP.
 ## To do list:
 - reapair removing while guest
 - simplication of code -> make it nicer and shorter
-- move words section to the top of site
 - Protect before URL access to admin
 - hash password
 - css site view
