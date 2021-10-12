@@ -1,6 +1,9 @@
 <?php
+include '../inc/sessionData.php';
+include '../inc/modules.php';
 include_once '../inc/dbh.php';
 
+forAdmin($userRole);
 $pushUser = $_POST['user'];
 $pushCzech = $_POST['czech'];
 $pushEnglish = $_POST['english'];

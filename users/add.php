@@ -1,6 +1,9 @@
 <?php
+include '../inc/sessionData.php';
+include '../inc/modules.php';
 include_once '../inc/dbh.php';
 
+forSuperadmin($userRole);
 $pushUser = $_POST['user'];
 $pushPwd = $_POST['pwd'];
 $Pwd2 = $_POST['pwd2'];

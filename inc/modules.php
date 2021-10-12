@@ -3,13 +3,15 @@ function forAdmin($role)
 {
     if (!isset($role)) {
         header('Location: list.php');
+        exit;
     }
 }
 
 function forSuperadmin($role)
 {
     if ($role !== 'superadmin') {
-        header('Location: list.php');
+        header('Location: ../words/list.php');
+        exit;
     }
 }
 
