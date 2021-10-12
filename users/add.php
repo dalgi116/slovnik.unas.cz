@@ -1,5 +1,5 @@
 <?php
-include_once 'inc/dbh.php';
+include_once '../inc/dbh.php';
 
 $pushUser = $_POST['user'];
 $pushPwd = $_POST['pwd'];
@@ -9,32 +9,32 @@ $trySql = "SELECT * FROM users WHERE user = '$pushUser';";
 $tryResult = $conn->query($trySql);
 
 if ($pushUser == '') {
-    header('Location: manageUsers.php?dataPush=errorEmptyArgument');
+    header('Location: list.php?dataPush=errorEmptyArgument');
 } 
 else {
     if ($pushPwd == '') {
-        header('Location: manageUsers.php?dataPush=errorEmptyArgument');
+        header('Location: list.php?dataPush=errorEmptyArgument');
     }
     else {
         if ($Pwd2 == '') {
-            header('Location: manageUsers.php?dataPush=errorEmptyArgument');
+            header('Location: list.php?dataPush=errorEmptyArgument');
         }
         else {
             if ($pushPwd !== $Pwd2) {
-                header('Location: manageUsers.php?dataPush=errorPasswordsNotMatch');
+                header('Location: list.php?dataPush=errorPasswordsNotMatch');
             }
             else {
                 if (strlen($pushUser) > 20) {
-                    header('Location: manageUsers.php?dataPush=errorTooLongArgument');
+                    header('Location: list.php?dataPush=errorTooLongArgument');
                 }
                 else {
                     if ($tryResult->num_rows > 0) {
-                        header('Location: manageUsers.php?dataPush=errorNameAlreadyUsed');
+                        header('Location: list.php?dataPush=errorNameAlreadyUsed');
                     }
                     else {
                         $mainSql = "INSERT INTO users (user, pwd, role) VALUES ('$pushUser', '$pushPwd', 'admin')";
                         $conn->query($mainSql);
-                        header('Location: manageUsers.php?dataPush=sucess');
+                        header('Location: list.php?dataPush=sucess');
                     }
                 }
             }

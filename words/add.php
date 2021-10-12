@@ -1,5 +1,5 @@
 <?php
-include_once 'inc/dbh.php';
+include_once '../inc/dbh.php';
 
 $pushUser = $_POST['user'];
 $pushCzech = $_POST['czech'];

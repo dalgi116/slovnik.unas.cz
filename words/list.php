@@ -1,19 +1,19 @@
 <?php
-include 'inc/sessionData.php';
-include_once 'inc/dbh.php';
+include '../inc/sessionData.php';
+include_once '../inc/dbh.php';
 
 if (isset($_POST['user']) and isset($_POST['pwd'])) {
     $_SESSION['user'] = $_POST['user'];
     $user = $_SESSION['user'];
     $pwd = $_POST['pwd'];
     if ($user == '' or $pwd == '') {
-        header('Location: index.php?login=errorEmtpyArgument');
+        header('Location: ../index.php?login=errorEmtpyArgument');
     }
     else {
         $sqlGetUser = "SELECT * FROM users WHERE user = '$user' AND pwd = '$pwd'";
         $usersFromDb = $conn->query($sqlGetUser);
         if ($usersFromDb->num_rows == 0) {
-            header('Location: index.php?login=errorIncorrectArguments');
+            header('Location: ../index.php?login=errorIncorrectArguments');
         }
     }
 }
@@ -28,7 +28,7 @@ if (!isset($user)) {
         <meta charset="UTF-8">
         <meta lang="en">
         <title>List of words</title>
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="../css/main.css">
     </head>
     <body>
         <h1>English - Czech vocabulary</h1>
@@ -44,13 +44,13 @@ if (!isset($user)) {
                 $_SESSION['userRole'] = $userRole;
                 if ($userRole == 'superadmin') {
                     echo '
-                    <form action="manageUsers.php" method="POST">
+                    <form action="../users/list.php" method="POST">
                         <input type="submit" class="btn" name="confirm" value="Manage users">
                     </form>';
                 }
             }
             ?>
-            <form action="index.php">
+            <form action="../index.php">
                 <input type="submit" class="log-out-btn" value="Log out">
             </form>
         </section>
@@ -146,7 +146,7 @@ if (!isset($user)) {
                     echo '<td>' . $word['cz'] . '</td>';
                     echo '<td>' . $word['des'] . '</td>';
                     echo '<td>' . $word['date'] . '</td>';
-                    echo '<td><a href="remove.php?itemId=' . $word['id'] . '"><img src="img/delete_icon.svg" alt="Delete_item_icon" width="40em" heigh="40em"></a><td>';
+                    echo '<td><a href="remove.php?itemId=' . $word['id'] . '"><img src="../img/delete_icon.svg" alt="Delete_item_icon" width="40em" heigh="40em"></a><td>';
                     echo '</tr>';
                 }
                 echo '

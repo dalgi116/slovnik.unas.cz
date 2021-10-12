@@ -1,7 +1,8 @@
 <?php
-session_start();
-$_SESSION['user'] = NULL;
-$_SESSION['userRole'] = NULL;
+include 'inc/sessionData.php';
+include 'inc/modules.php';
+
+resetSession();
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +24,7 @@ $_SESSION['userRole'] = NULL;
 
         <section class="sign-in">
             <h2>Sign in</h2>
-            <form action="list.php" method="POST">
+            <form action="words/list.php" method="POST">
                 <label for="user">Username: </label><br>
                 <input type="text" name="user" id="user"><br>
                 <label for="pwd">Password: </label><br>
@@ -31,7 +32,7 @@ $_SESSION['userRole'] = NULL;
                 <input type="submit" class="main-btn">
             </form>
             <p>OR</p>
-            <form action="list.php">
+            <form action="words/list.php">
                 <input type="submit" class="btn" value="Sign as guest">
             </form>
         </section>

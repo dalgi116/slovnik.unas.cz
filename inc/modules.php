@@ -12,4 +12,10 @@ function forSuperadmin($role)
         header('Location: list.php');
     }
 }
+
+function resetSession()
+{
+    $_SESSION['user'] = NULL;
+    $_SESSION['userRole'] = NULL;
+}
 ?>
