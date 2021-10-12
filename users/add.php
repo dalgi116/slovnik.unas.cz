@@ -35,7 +35,8 @@ else {
                         header('Location: index.php?dataPush=errorNameAlreadyUsed');
                     }
                     else {
-                        $mainSql = "INSERT INTO users (user, pwd, role) VALUES ('$pushUser', '$pushPwd', 'admin')";
+                        $hashedPwd = password_hash($pushPwd, PASSWORD_DEFAULT);
+                        $mainSql = "INSERT INTO users (user, pwd, role) VALUES ('$pushUser', '$hashedPwd', 'admin')";
                         $conn->query($mainSql);
                         header('Location: index.php?dataPush=sucess');
                     }

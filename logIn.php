@@ -14,19 +14,17 @@ else {
         exit;
     }
     else {
-        $sqlGetUser = "SELECT * FROM users WHERE user = '$user' AND pwd = '$pwd'";
-        $usersFromDb = $conn->query($sqlGetUser);
-        if ($usersFromDb->num_rows == 0) {
+        $sqlGetUser = "SELECT * FROM users WHERE user = '$user';";
+        $userDb = $conn->query($sqlGetUser);
+        $userParams = $userDb->fetch_assoc();
+        $hashedPwd = $userParams['pwd'];
+        if (!password_verify($pwd, $hashedPwd)) {
             header('Location: /index.php?login=errorIncorrectArguments');
             exit;
         }
         else {
-            $sqlGetRole = "SELECT * FROM users WHERE user = '$user';";
-            $userDb = $conn->query($sqlGetRole);
-            $userParams = $userDb->fetch_assoc();
-            $userRole = $userParams['role'];
-
-            $_SESSION['userRole'] = $userRole;
+            echo 'nok';
+            $_SESSION['userRole'] = $userParams['role'];
             $_SESSION['user'] = $user;
             header('Location: words/index.php?login=success');
             exit;
