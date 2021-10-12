@@ -20,4 +20,16 @@ function resetSession()
     $_SESSION['user'] = NULL;
     $_SESSION['userRole'] = NULL;
 }
+
+function redirectTo($adress)
+{
+    header('Location: ' . $adress);
+    exit;
+}
+
+function redirectToWords()
+{
+    $adress = '/words/list.php';
+    redirectTo($adress);
+}
 ?>
