@@ -123,7 +123,10 @@ include_once '../inc/dbh.php';
                     echo '<td>' . $word['des'] . '</td>';
                     echo '<td>' . $word['date'] . '</td>';
                     if (isset($user)) {
-                    echo '<td><a href="remove.php?itemId=' . $word['id'] . '"><img src="../img/delete_icon.svg" alt="Delete_item_icon" width="40em" heigh="40em"></a><td>';
+                        echo '<td><a href="remove.php?itemId=' . $word['id'] . '"><img src="../img/delete_icon.svg" alt="Delete_item_icon" width="40em" heigh="40em"></a><td>';
+                    }
+                    if ($userRole == 'superadmin') {
+                        echo '<td>' . $word['user'] . '</td>';
                     }
                     echo '</tr>';
                 }
