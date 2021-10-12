@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'inc/sessionData.php';
 include_once 'inc/dbh.php';
 
 if (isset($_POST['user']) and isset($_POST['pwd'])) {
