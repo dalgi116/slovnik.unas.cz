@@ -2,7 +2,7 @@
 function forAdmin($role)
 {
     if (!isset($role)) {
-        header('Location: list.php');
+        header('Location: /words');
         exit;
     }
 }
@@ -10,7 +10,7 @@ function forAdmin($role)
 function forSuperadmin($role)
 {
     if ($role !== 'superadmin') {
-        header('Location: ../words/list.php');
+        header('Location: ../words');
         exit;
     }
 }
@@ -29,7 +29,7 @@ function redirectTo($adress)
 
 function redirectToWords()
 {
-    $adress = '/words/list.php';
+    $adress = '/words';
     redirectTo($adress);
 }
 ?>

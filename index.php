@@ -24,7 +24,7 @@ resetSession();
 
         <section class="sign-in">
             <h2>Sign in</h2>
-            <form action="words/list.php" method="POST">
+            <form action="logIn.php" method="POST">
                 <label for="user">Username: </label><br>
                 <input type="text" name="user" id="user"><br>
                 <label for="pwd">Password: </label><br>
@@ -32,7 +32,7 @@ resetSession();
                 <input type="submit" class="main-btn">
             </form>
             <p>OR</p>
-            <form action="words/list.php">
+            <form action="words">
                 <input type="submit" class="btn" value="Sign as guest">
             </form>
         </section>
