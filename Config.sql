@@ -42,6 +42,6 @@ INSERT INTO users (
     role
 ) VALUES (
     'admin',
-    '01',
+    '$2y$10$ZMMG07w0o2Xj.Sx7HIjGxe6EwJsrfgNzewtvvtZEindae/9C.Rd/2', /* pwd -> 01 */
     'superadmin'
 );
