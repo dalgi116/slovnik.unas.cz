@@ -1,5 +1,5 @@
 <?php
-include 'inc/sessionData.php';
+session_start();
 include 'inc/modules.php';
 
 resetSession();
