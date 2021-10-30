@@ -42,14 +42,14 @@ forSuperadmin($userRole);
                     <tr>
                         <th>User</th>
                         <th>Role</th>
-                    </tr>
+                        <th>DEL</th>
                 ';
                 while ($user = $sqlResult->fetch_assoc()) {
                     echo '<tr>';
                     echo '<td>' . $user['user'] . '</td>';
                     echo '<td>' . $user['role'] . '</td>';
                     if ($user['role'] !== 'superadmin') {
-                        echo '<td><a href="remove.php?itemId=' . $user['id'] . '"><img src="../img/delete_icon.svg" alt="Delete_item_icon" width="40em" heigh="40em"></a><td>';
+                        echo '<td><a href="remove.php?itemId=' . $user['id'] . '"><img src="../img/delete_icon.svg" alt="Delete_item_icon" width="40em" heigh="40em"></a></td>';
                     }
                     echo '</tr>';
                 }
