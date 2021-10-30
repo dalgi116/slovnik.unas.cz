@@ -9,7 +9,7 @@ include_once '../inc/dbh.php';
         <meta charset="UTF-8">
         <meta lang="en">
         <title>List of words</title>
-        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../main.css">
     </head>
     <body>
         <h1>English - Czech vocabulary</h1>

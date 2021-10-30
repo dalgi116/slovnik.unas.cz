@@ -12,7 +12,7 @@ forSuperadmin($userRole);
         <meta charset="UTF-8">
         <meta lang="en">
         <title>Manage users</title>
-        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../main.css">
     </head>
     <body>
         <section class="settings">
