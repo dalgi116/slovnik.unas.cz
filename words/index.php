@@ -25,6 +25,9 @@ include_once '../inc/dbh.php';
                     </form>';
                 }
             }
+            else {
+                echo '<p><b>Active user: </b>guest</p>';   
+            }
             ?>
             <form action="../index.php">
                 <input type="submit" class="log-out-btn" value="Log out">
@@ -34,7 +37,7 @@ include_once '../inc/dbh.php';
            <?php
             if (isset($user)) {
                 echo '
-                <div class="add-words">
+                <div class="add">
                     <h2>Add words</h2>
                     <form action="add.php" method="POST">
                         <input name="user" type="hidden" value="' . $user . '">
@@ -49,39 +52,40 @@ include_once '../inc/dbh.php';
                 </div>';
             }
             ?>
-            <div class="search-words">
+            <div class="search">
                 <h2>Search words</h2>
                 <form action="/words">
                     <input type="text" name="search"><br>
                     <input type="submit" class="btn">
                 </form>
             </div>
-            <div class="sort-words">
+            <div class="sort">
                 <h2>Sort words</h2>
                 <form action="/words">
+                    <p>
                     <input type="radio" id="sort-name-en" name="sortBy" value="en">
-                    <label for="sort-name-en">Name-EN</label>
+                    <label for="sort-name-en">Name-EN</label> | 
                     <input type="radio" id="sort-name-cz" name="sortBy" value="cz">
-                    <label for="sort-name-cz">Name-CZ</label>
+                    <label for="sort-name-cz">Name-CZ</label> | 
                     <input type="radio" id="sort-date" name="sortBy" value="date">
                     <label for="sort-date">Date</label>
                     <br>
                     <input type="radio" id="sort-ascending" name="sortOrder" value="asc">
-                    <label for="sort-ascending">Ascending</label>
+                    <label for="sort-ascending">Ascending</label> | 
                     <input type="radio" id="sort-descending" name="sortOrder" value="desc">
                     <label for="sort-descending">Descending</label><br>
                     <input type="submit" class="btn">
+                    </p>
                 </form>
             </div>
-            <br><br>
-            <div class="restore-words">
+            <div class="restore">
                 <form action="/words">
                     <input type="submit" class="btn" value="RESTORE ORIGINAL">
                 </form>
             </div>
         </section>
 
-        <section class="words">
+        <section class="list">
             <?php
             if (isset($_GET['search'])) {
                 $searchedWord = $_GET['search'];
@@ -135,7 +139,7 @@ include_once '../inc/dbh.php';
                 ';
             }
             else {
-                echo '<i>No words has been found.</i>';
+                echo '<i style="text-align: center;">No words has been found.</i>';
             }
             ?>
         </section>

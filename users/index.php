@@ -15,26 +15,24 @@ forSuperadmin($userRole);
         <link rel="stylesheet" href="../main.css">
     </head>
     <body>
-        <section class="settings">
-            <div class="go-back">
-                <form action="../words">
-                    <input type="submit" class="btn" value="GO BACK">
-                </form>
-            </div>
-            <div class="add-users">
-                <h2>Add users</h2>
-                <form action="add.php" method="POST">
-                    <label for="add-user">User: </label><br>
-                    <input name="user" type="text" id="add-user"><br>
-                    <label for="add-pwd">Password: </label><br>
-                    <input name="pwd" type="password" id="add-pwd"><br>
-                    <label for="add-pwd2">Password again: </label><br>
-                    <input name="pwd2" type="password" id="add-pwd2"><br>
-                    <input type="submit" class="btn">
-                </form>
-            </div>
+        <section class="right-bar">
+            <form action="../words">
+                <input type="submit" class="btn" value="GO BACK">
+            </form>
         </section>
-        <section class="words">
+        <section class="left-bar">
+            <h2>Add users</h2>
+            <form action="add.php" method="POST">
+                <label for="add-user">User: </label><br>
+                <input name="user" type="text" id="add-user"><br>
+                <label for="add-pwd">Password: </label><br>
+                <input name="pwd" type="password" id="add-pwd"><br>
+                <label for="add-pwd2">Password again: </label><br>
+                <input name="pwd2" type="password" id="add-pwd2"><br>
+                <input type="submit" class="btn">
+            </form>
+        </section>
+        <section class="list">
             <?php
             $sqlGetUsers = "SELECT * FROM  users;";
             $sqlResult = $conn->query($sqlGetUsers);

@@ -1,0 +1,92 @@
+:root {
+    --dark: #00aaff;
+    --light: #80d4ff;
+    --fill: #f2f2f2;
+}
+
+body {
+    background-color: var(--fill);
+}
+
+.middle-site {
+    background-color: var(--dark);
+    margin: auto;
+    width: 20em;
+    padding: 2em;
+    text-align: center;
+}
+
+.sign-in {
+    margin: auto;
+    width: 14em;
+    padding: 0.5em;
+    background-color: var(--light);
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+}
+
+input[type="submit"] {
+    border-radius: 0.2em;
+    border: none;
+    background-color: var(--fill);
+}
+
+.right-bar {
+    position: fixed;
+    right: 1em;
+    text-align: right;
+    width: 15%;
+    padding: 0.5em;
+    background-color: var(--dark);
+}
+
+.left-bar {
+    position: fixed;
+    left: 1em;
+    width: 15%;
+    padding : 0.5em;
+    background-color: var(--dark);
+}
+
+input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+}
+input[type=radio]+label {
+	font-weight: normal;
+}
+input[type=radio]:checked+label {
+	border: 2px solid red;
+}
+
+.list {
+    text-align: center;
+}
+
+i {
+    color: red;
+}
+
+table, th, td {
+    border: 1px solid;
+    padding: 0.3em;
+}
+
+th {
+    background-color: var(--light);
+}
+
+table {
+    text-align: left;
+    margin: auto;
+    width: 60%;
+    border-collapse: collapse;
+}
+
+.add, .sort, .search {
+    border-bottom: 1px solid;
+    padding: 0.2em;
+}
