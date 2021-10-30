@@ -118,19 +118,26 @@ include_once '../inc/dbh.php';
                         <th>Czech</th>
                         <th>Description</th>
                         <th>Date of add</th>
-                    </tr>
                 ';
+                if ($userRole == 'superadmin') {
+                    echo '<th>Added by</th>';
+                }
+                if (isset($user)) {
+                    echo '<th>DEL</th>';
+                }
+                echo '</tr>';
+
                 while ($word = $sqlResult->fetch_assoc()) {
                     echo '<tr>';
                     echo '<td>' . $word['en'] . '</td>';
                     echo '<td>' . $word['cz'] . '</td>';
                     echo '<td>' . $word['des'] . '</td>';
                     echo '<td>' . $word['date'] . '</td>';
-                    if (isset($user)) {
-                        echo '<td><a href="remove.php?itemId=' . $word['id'] . '"><img src="../img/delete_icon.svg" alt="Delete_item_icon" width="40em" heigh="40em"></a><td>';
-                    }
                     if ($userRole == 'superadmin') {
                         echo '<td>' . $word['user'] . '</td>';
+                    }
+                    if (isset($user)) {
+                        echo '<td><a href="remove.php?itemId=' . $word['id'] . '"><img src="../img/delete_icon.svg" alt="Delete_item_icon" width="40em" heigh="40em"></a></td>';
                     }
                     echo '</tr>';
                 }
