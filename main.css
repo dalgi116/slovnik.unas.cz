@@ -16,7 +16,8 @@ body {
     text-align: center;
 }
 
-.sign-in {
+.middle-bar {
+    text-align: center;
     margin: auto;
     width: 14em;
     padding: 0.5em;

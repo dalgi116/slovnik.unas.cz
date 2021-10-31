@@ -16,7 +16,12 @@ include_once '../inc/dbh.php';
         <section class="right-bar">
             <?php
             if (isset($user)) {
-                echo '<p><b>Active user: </b>' . $user . '</p>';
+                echo '
+                    <p><b>Active user: </b>' . $user . '</p>
+                    <form action="../users/edit.php" method="POST">
+                        <input type="submit" class="btn" name="confirm" value="Edit profile">
+                    </form>
+                ';
 
                 if ($userRole == 'superadmin') {
                     echo '

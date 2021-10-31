@@ -20,7 +20,7 @@ resetSession();
                 <p>Some text will be here...</p>
             </div>
 
-            <div class="sign-in">
+            <div class="middle-bar">
                 <h2>Sign in</h2>
                 <form action="logIn.php" method="POST">
                     <label for="user">Username: </label><br>
