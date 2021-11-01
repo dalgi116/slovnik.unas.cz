@@ -15,6 +15,7 @@ forSuperadmin($userRole);
         <link rel="stylesheet" href="../main.css">
     </head>
     <body>
+        <h1>List of Users</h1>
         <section class="right-bar">
             <form action="../words">
                 <input type="submit" class="btn" value="GO BACK">

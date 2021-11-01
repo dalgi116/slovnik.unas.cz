@@ -36,7 +36,6 @@ input[type="submit"] {
 }
 
 .right-bar {
-    position: fixed;
     right: 1em;
     text-align: right;
     width: 15%;
@@ -45,7 +44,6 @@ input[type="submit"] {
 }
 
 .left-bar {
-    position: fixed;
     left: 1em;
     width: 15%;
     padding : 0.5em;
@@ -81,6 +79,7 @@ th {
 }
 
 table {
+    position: absolute;
     text-align: left;
     margin: auto;
     width: 60%;
