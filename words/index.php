@@ -18,7 +18,7 @@ include_once '../inc/dbh.php';
             if (isset($user)) {
                 echo '
                     <p><b>Active user: </b>' . $user . '</p>
-                    <form action="../users/edit.php" method="POST">
+                    <form action="../users/editUser.php" method="POST">
                         <input type="submit" class="btn" name="confirm" value="Edit profile">
                     </form>
                 ';

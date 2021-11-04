@@ -4,33 +4,54 @@ include '../inc/modules.php';
 include_once '../inc/dbh.php';
 
 forAdmin($userRole);
-?>
+$currentPwd = $_POST['currentPwd'];
+$newName = $_POST['newName'];
+$newPwd = $_POST['newPwd'];
+$checkPwd = $_POST['checkPwd'];
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta lang="en">
-        <title>Edit user</title>
-        <link rel="stylesheet" href="../main.css">
-    </head>
-    <body>
-        <section class="right-bar">
-            <form action="../words">
-                <input type="submit" class="btn" value="GO BACK">
-            </form>
-        </section>
-        <section class="middle-bar">
-            <h2>Edit profile</h2>
-            <form action="edit.php" method="POST">
-                <label for="add-user">User: </label><br>
-                <input name="user" type="text" id="add-user"><br>
-                <label for="add-pwd">Password: </label><br>
-                <input name="pwd" type="password" id="add-pwd"><br>
-                <label for="add-pwd2">Password again: </label><br>
-                <input name="pwd2" type="password" id="add-pwd2"><br>
-                <input type="submit" class="btn">
-            </form>
-        </section>
-    </body>
-</html>
+if ($newName == '') {
+    header('Location: editUser.php?dataPush=errorEmptyArgument');
+}
+else {
+    if ($newPwd == '') {
+        header('Location: editUser.php?dataPush=errorEmptyArgument');
+    }
+    else {
+        if ($checkPwd == '') {
+            header('Location: editUser.php?dataPush=errorEmptyArgument');
+        }
+        else {
+            $sqlGetUser = "SELECT * FROM users WHERE user = '$user';";
+            $userDb = $conn->query($sqlGetUser);
+            $userParams = $userDb->fetch_assoc();
+            $hashedPwd = $userParams['pwd'];
+            if (!password_verify($currentPwd, $hashedPwd)) {
+                header('Location: editUser.php?dataPush=errorInvalidPassword');
+            }
+            else {
+                if ($newPwd !== $checkPwd) {
+                    header('Location: editUser.php?dataPush=errorPasswordsNotMatch');
+                }
+                else {
+                    if (strlen($newName) > 20) {
+                        header('Location: editUser.php?dataPush=errorTooLongArgument');
+                    }
+                    else {
+                        $sqlGetNewUser = "SELECT * FROM users WHERE user = '$newName';";
+                        $newUserDb = $conn->query($sqlGetNewUser);
+                        if ($newUserDb->num_rows > 0 and $newName !== $user) {
+                            header('Location: editUser.php?dataPush=errorNameAlreadyUsed');
+                        }
+                        else {
+                            $newHashedPwd = password_hash($newPwd, PASSWORD_DEFAULT);
+                            $sqlEditUser = "UPDATE users SET user='$newName', pwd='$newHashedPwd' WHERE user='$user';";
+                            $conn->query($sqlEditUser);
+                            $_SESSION['user'] = $newName;
+                            header('Location: /words/index.php?dataPush=sucess');
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
