@@ -19,6 +19,10 @@ input[type="submit"] {
     background-color: var(--fill);
 }
 
+input[type="text"] {
+    width: 80%;
+}
+
 input[type="radio"] {
 	position: absolute;
 	opacity: 0;

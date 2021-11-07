@@ -27,7 +27,7 @@ include_once '../inc/dbh.php';
                             <label for="add-czech">Czech: </label><br>
                             <input name="czech" type="text" id="add-czech"><br>
                             <label for="add-description">Description: </label><br>
-                            <input name="description" id="add-description"><br>
+                            <input name="description" type="text id="add-description"><br>
                             <input type="submit" class="btn">
                         </form>
                     </div>';
