@@ -16,24 +16,24 @@ forSuperadmin($userRole);
     </head>
     <body>
         <h1>List of Users</h1>
-        <section class="right-bar">
-            <form action="../words">
-                <input type="submit" class="btn" value="GO BACK">
-            </form>
-        </section>
-        <section class="left-bar">
-            <h2>Add users</h2>
-            <form action="add.php" method="POST">
-                <label for="add-user">User: </label><br>
-                <input name="user" type="text" id="add-user"><br>
-                <label for="add-pwd">Password: </label><br>
-                <input name="pwd" type="password" id="add-pwd"><br>
-                <label for="add-pwd2">Password again: </label><br>
-                <input name="pwd2" type="password" id="add-pwd2"><br>
-                <input type="submit" class="btn">
-            </form>
-        </section>
         <section class="list">
+            <div class="right-bar">
+                <form action="../words">
+                    <input type="submit" class="btn" value="GO BACK">
+                </form>
+            </div>
+            <div class="left-bar">
+                <h2>Add users</h2>
+                <form action="add.php" method="POST">
+                    <label for="add-user">User: </label><br>
+                    <input name="user" type="text" id="add-user"><br>
+                    <label for="add-pwd">Password: </label><br>
+                    <input name="pwd" type="password" id="add-pwd"><br>
+                    <label for="add-pwd2">Password again: </label><br>
+                    <input name="pwd2" type="password" id="add-pwd2"><br>
+                    <input type="submit" class="btn">
+                </form>
+            </div>
             <?php
             $sqlGetUsers = "SELECT * FROM  users;";
             $sqlResult = $conn->query($sqlGetUsers);
@@ -62,6 +62,13 @@ forSuperadmin($userRole);
                 echo '<i>No users has been found.</i>';
             }
             ?>
+        </section>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <section class="bottom">
+            <p>
+                <b>Daniel Franc [<a style="text-decoration: none;" href="https://github.com/dalgi116">dalgi116</a>]</b><br>
+                2021<br>
+            </p>
         </section>
     </body>
 </html>

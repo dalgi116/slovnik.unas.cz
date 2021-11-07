@@ -13,84 +13,84 @@ include_once '../inc/dbh.php';
     </head>
     <body>
         <h1>English - Czech vocabulary</h1>
-        <section class="right-bar">
-            <?php
-            if (isset($user)) {
-                echo '
-                    <p><b>Active user: </b>' . $user . '</p>
-                    <form action="../users/editUser.php" method="POST">
-                        <input type="submit" class="btn" name="confirm" value="Edit profile">
-                    </form>
-                ';
-
-                if ($userRole == 'superadmin') {
+        <section class="list">
+            <div class="right-bar">
+                <?php
+                if (isset($user)) {
                     echo '
-                    <form action="../users" method="POST">
-                        <input type="submit" class="btn" name="confirm" value="Manage users">
-                    </form>';
+                        <p><b>Active user: </b>' . $user . '</p>
+                        <form action="../users/editUser.php" method="POST">
+                            <input type="submit" class="btn" name="confirm" value="Edit profile">
+                        </form>
+                    ';
+    
+                    if ($userRole == 'superadmin') {
+                        echo '
+                        <form action="../users" method="POST">
+                            <input type="submit" class="btn" name="confirm" value="Manage users">
+                        </form>';
+                    }
                 }
-            }
-            else {
-                echo '<p><b>Active user: </b>guest</p>';   
-            }
-            ?>
-            <form action="../index.php">
-                <input type="submit" class="log-out-btn" value="Log out">
-            </form>
-        </section>
-        <section class="left-bar">
-           <?php
-            if (isset($user)) {
-                echo '
-                <div class="add">
-                    <h2>Add words</h2>
-                    <form action="add.php" method="POST">
-                        <input name="user" type="hidden" value="' . $user . '">
-                        <label for="add-english">English: </label><br>
-                        <input name="english" type="text" id="add-english"><br>
-                        <label for="add-czech">Czech: </label><br>
-                        <input name="czech" type="text" id="add-czech"><br>
-                        <label for="add-description">Description: </label><br>
-                        <input name="description" id="add-description"><br>
+                else {
+                    echo '<p><b>Active user: </b>guest</p>';   
+                }
+                ?>
+                <form action="../index.php">
+                    <input type="submit" class="log-out-btn" value="Log out">
+                </form>
+            </div>
+            <div class="left-bar">
+               <?php
+                if (isset($user)) {
+                    echo '
+                    <div class="add">
+                        <h2>Add words</h2>
+                        <form action="add.php" method="POST">
+                            <input name="user" type="hidden" value="' . $user . '">
+                            <label for="add-english">English: </label><br>
+                            <input name="english" type="text" id="add-english"><br>
+                            <label for="add-czech">Czech: </label><br>
+                            <input name="czech" type="text" id="add-czech"><br>
+                            <label for="add-description">Description: </label><br>
+                            <input name="description" id="add-description"><br>
+                            <input type="submit" class="btn">
+                        </form>
+                    </div>';
+                }
+                ?>
+                <div class="search">
+                    <h2>Search words</h2>
+                    <form action="/words">
+                        <input type="text" name="search"><br>
                         <input type="submit" class="btn">
                     </form>
-                </div>';
-            }
-            ?>
-            <div class="search">
-                <h2>Search words</h2>
-                <form action="/words">
-                    <input type="text" name="search"><br>
-                    <input type="submit" class="btn">
-                </form>
+                </div>
+                <div class="sort">
+                    <h2>Sort words</h2>
+                    <form action="/words">
+                        <p>
+                        <input type="radio" id="sort-name-en" name="sortBy" value="en">
+                        <label for="sort-name-en">Name-EN</label> | 
+                        <input type="radio" id="sort-name-cz" name="sortBy" value="cz">
+                        <label for="sort-name-cz">Name-CZ</label> | 
+                        <input type="radio" id="sort-date" name="sortBy" value="date">
+                        <label for="sort-date">Date</label>
+                        <br>
+                        <input type="radio" id="sort-ascending" name="sortOrder" value="asc">
+                        <label for="sort-ascending">Ascending</label> | 
+                        <input type="radio" id="sort-descending" name="sortOrder" value="desc">
+                        <label for="sort-descending">Descending</label><br>
+                        <input type="submit" class="btn">
+                        </p>
+                    </form>
+                </div>
+                <div class="restore">
+                    <form action="/words">
+                        <input type="submit" class="btn" value="RESTORE ORIGINAL">
+                    </form>
+                </div>
             </div>
-            <div class="sort">
-                <h2>Sort words</h2>
-                <form action="/words">
-                    <p>
-                    <input type="radio" id="sort-name-en" name="sortBy" value="en">
-                    <label for="sort-name-en">Name-EN</label> | 
-                    <input type="radio" id="sort-name-cz" name="sortBy" value="cz">
-                    <label for="sort-name-cz">Name-CZ</label> | 
-                    <input type="radio" id="sort-date" name="sortBy" value="date">
-                    <label for="sort-date">Date</label>
-                    <br>
-                    <input type="radio" id="sort-ascending" name="sortOrder" value="asc">
-                    <label for="sort-ascending">Ascending</label> | 
-                    <input type="radio" id="sort-descending" name="sortOrder" value="desc">
-                    <label for="sort-descending">Descending</label><br>
-                    <input type="submit" class="btn">
-                    </p>
-                </form>
-            </div>
-            <div class="restore">
-                <form action="/words">
-                    <input type="submit" class="btn" value="RESTORE ORIGINAL">
-                </form>
-            </div>
-        </section>
-
-        <section class="list">
+            
             <?php
             if (isset($_GET['search'])) {
                 $searchedWord = $_GET['search'];
@@ -154,6 +154,13 @@ include_once '../inc/dbh.php';
                 echo '<i style="text-align: center;">No words has been found.</i>';
             }
             ?>
+        </section>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <section class="bottom">
+            <p>
+                <b>Daniel Franc [<a style="text-decoration: none;" href="https://github.com/dalgi116">dalgi116</a>]</b><br>
+                2021<br>
+            </p>
         </section>
     </body>
 </html>
