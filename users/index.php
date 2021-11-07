@@ -17,11 +17,6 @@ forSuperadmin($userRole);
     <body>
         <h1>List of Users</h1>
         <section class="list">
-            <div class="right-bar">
-                <form action="../words">
-                    <input type="submit" class="btn" value="GO BACK">
-                </form>
-            </div>
             <div class="left-bar">
                 <h2>Add users</h2>
                 <form action="add.php" method="POST">
@@ -32,6 +27,11 @@ forSuperadmin($userRole);
                     <label for="add-pwd2">Password again: </label><br>
                     <input name="pwd2" type="password" id="add-pwd2"><br>
                     <input type="submit" class="btn">
+                </form>
+            </div>
+            <div class="right-bar">
+                <form action="../words">
+                    <input type="submit" class="btn" value="GO BACK">
                 </form>
             </div>
             <?php

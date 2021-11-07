@@ -14,31 +14,6 @@ include_once '../inc/dbh.php';
     <body>
         <h1>English - Czech vocabulary</h1>
         <section class="list">
-            <div class="right-bar">
-                <?php
-                if (isset($user)) {
-                    echo '
-                        <p><b>Active user: </b>' . $user . '</p>
-                        <form action="../users/editUser.php" method="POST">
-                            <input type="submit" class="btn" name="confirm" value="Edit profile">
-                        </form>
-                    ';
-    
-                    if ($userRole == 'superadmin') {
-                        echo '
-                        <form action="../users" method="POST">
-                            <input type="submit" class="btn" name="confirm" value="Manage users">
-                        </form>';
-                    }
-                }
-                else {
-                    echo '<p><b>Active user: </b>guest</p>';   
-                }
-                ?>
-                <form action="../index.php">
-                    <input type="submit" class="log-out-btn" value="Log out">
-                </form>
-            </div>
             <div class="left-bar">
                <?php
                 if (isset($user)) {
@@ -89,6 +64,31 @@ include_once '../inc/dbh.php';
                         <input type="submit" class="btn" value="RESTORE ORIGINAL">
                     </form>
                 </div>
+            </div>
+            <div class="right-bar">
+                <?php
+                if (isset($user)) {
+                    echo '
+                        <p><b>Active user: </b>' . $user . '</p>
+                        <form action="../users/editUser.php" method="POST">
+                            <input type="submit" class="btn" name="confirm" value="Edit profile">
+                        </form>
+                    ';
+    
+                    if ($userRole == 'superadmin') {
+                        echo '
+                        <form action="../users" method="POST">
+                            <input type="submit" class="btn" name="confirm" value="Manage users">
+                        </form>';
+                    }
+                }
+                else {
+                    echo '<p><b>Active user: </b>guest</p>';   
+                }
+                ?>
+                <form action="../index.php">
+                    <input type="submit" class="log-out-btn" value="Log out">
+                </form>
             </div>
             
             <?php
