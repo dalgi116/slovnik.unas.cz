@@ -107,7 +107,7 @@ include_once '../inc/dbh.php';
                     }
                 }
                 else {
-                    $sortBy = 'date';
+                    $sortBy = 'en';
                     $sortOrder = 'asc';
                 }
 
