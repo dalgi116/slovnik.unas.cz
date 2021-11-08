@@ -19,7 +19,21 @@ include_once '../inc/dbh.php';
                 if (isset($user)) {
                     echo '
                     <div class="add">
-                        <h2>Přidat slovíčka</h2>
+                        <div>
+                            <h2>Přidat slovíčka</h2> ';
+                    if (!isset($_GET['wordAdd'])) {
+                        echo '<img class="img-add" src="../img/itemAddEmpty.svg" alt="itemAddEmpty.svg">';
+                    }
+                    else {
+                        if ($_GET['wordAdd'] == 'success') {
+                            echo '<img class="img-add" src="../img/itemAddSuccess.svg" alt="itemAddSuccess.svg">';
+                        }
+                        else {
+                            echo '<img class="img-add" src="../img/itemAddFailed.svg" alt="itemAddFailed.svg">';
+                        }
+                    }
+                    echo '
+                        </div>
                         <form action="add.php" method="POST">
                             <input name="user" type="hidden" value="' . $user . '">
                             <label for="add-english">Anglicky: </label><br>

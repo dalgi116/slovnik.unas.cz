@@ -12,33 +12,33 @@ $trySql = "SELECT * FROM users WHERE user = '$pushUser';";
 $tryResult = $conn->query($trySql);
 
 if ($pushUser == '') {
-    header('Location: index.php?dataPush=errorEmptyArgument');
+    header('Location: index.php?userAdd=errorEmptyArgument');
 } 
 else {
     if ($pushPwd == '') {
-        header('Location: index.php?dataPush=errorEmptyArgument');
+        header('Location: index.php?userAdd=errorEmptyArgument');
     }
     else {
         if ($Pwd2 == '') {
-            header('Location: index.php?dataPush=errorEmptyArgument');
+            header('Location: index.php?userAdd=errorEmptyArgument');
         }
         else {
             if ($pushPwd !== $Pwd2) {
-                header('Location: index.php?dataPush=errorPasswordsNotMatch');
+                header('Location: index.php?userAdd=errorPasswordsNotMatch');
             }
             else {
                 if (strlen($pushUser) > 20) {
-                    header('Location: index.php?dataPush=errorTooLongArgument');
+                    header('Location: index.php?userAdd=errorTooLongArgument');
                 }
                 else {
                     if ($tryResult->num_rows > 0) {
-                        header('Location: index.php?dataPush=errorNameAlreadyUsed');
+                        header('Location: index.php?userAdd=errorNameAlreadyUsed');
                     }
                     else {
                         $hashedPwd = password_hash($pushPwd, PASSWORD_DEFAULT);
                         $mainSql = "INSERT INTO users (user, pwd, role) VALUES ('$pushUser', '$hashedPwd', 'admin')";
                         $conn->query($mainSql);
-                        header('Location: index.php?dataPush=sucess');
+                        header('Location: index.php?userAdd=success');
                     }
                 }
             }

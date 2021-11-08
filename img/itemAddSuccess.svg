@@ -8,6 +8,6 @@
 <polygon style="stroke: rgb(0,0,0); stroke-width: 8; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0; fill-rule: nonzero; opacity: 1;"  points="-50,-50 -50,50 50,50 50,-50 " />
 </g>
 <g transform="matrix(0.99 0 0 0.99 81.81 52.32)"  >
-<path style="stroke: rgb(58,174,4); stroke-width: 10; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(3,255,13); fill-opacity: 0; fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-77, -53)" d="M 19 65 Q 59 102 59 102 L 135 4" stroke-linecap="round" />
+<path style="stroke: rgb(0,51,8); stroke-width: 10; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(3,255,13); fill-opacity: 0; fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-77, -53)" d="M 19 65 Q 59 102 59 102 L 135 4" stroke-linecap="round" />
 </g>
 </svg>

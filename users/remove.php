@@ -8,8 +8,8 @@ $itemId = $_GET['itemId'];
 
 $sqlRemove = "DELETE FROM users WHERE id = $itemId;";
 if ($conn->query($sqlRemove) == True) {
-    header('Location: index.php?dataPush=success');
+    header('Location: index.php?userRemove=success');
 }
 else {
-    header('Location: index.php?dataPush=error:' . $conn->error);
+    header('Location: index.php?userRemove=error:' . $conn->error);
 }

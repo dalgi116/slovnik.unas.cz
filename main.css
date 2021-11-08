@@ -13,13 +13,17 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    display: inline;
+}
+
 input[type="submit"] {
     border-radius: 0.2em;
     border: none;
     background-color: var(--fill);
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
     width: 80%;
 }
 
@@ -122,4 +126,10 @@ table {
 
 .no-margin {
     margin-bottom: 0em;
+}
+
+.img-add {
+    float: right;
+    width: 2.5em;
+    height: 2.5em;
 }

@@ -18,7 +18,22 @@ forSuperadmin($userRole);
         <h1>Uživatelé</h1>
         <section class="list">
             <div class="left-bar">
-                <h2>Přidat uživatele</h2>
+                <div>
+                    <h2>Přidat uživatele</h2>
+                    <?php
+                    if (!isset($_GET['userAdd'])) {
+                        echo '<img class="img-add" src="../img/itemAddEmpty.svg" alt="itemAddEmpty.svg">';
+                    }
+                    else {
+                        if ($_GET['userAdd'] == 'success') {
+                            echo '<img class="img-add" src="../img/itemAddSuccess.svg" alt="itemAddSuccess.svg">';
+                        }
+                        else {
+                            echo '<img class="img-add" src="../img/itemAddFailed.svg" alt="itemAddFailed.svg">';
+                        }
+                    }
+                    ?> 
+                </div>
                 <form action="add.php" method="POST">
                     <label for="add-user">Přihlašovací jméno: </label><br>
                     <input name="user" type="text" id="add-user"><br>
