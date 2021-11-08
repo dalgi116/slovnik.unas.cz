@@ -36,6 +36,15 @@ input[type=radio]:checked+label {
 
 i {
     color: red;
+    font-size: 1.2em;
+}
+
+p {
+    margin: 0.8em;
+}
+
+strong {
+    font-size: 1.3em;
 }
 
 table, th, td {
@@ -104,4 +113,13 @@ table {
     background-color: var(--light);
     padding: 1em;
     text-decoration: none;
+}
+
+.btn-large {
+    padding: 0.2em;
+    margin-top: 0.2em;
+}
+
+.no-margin {
+    margin-bottom: 0em;
 }

@@ -8,60 +8,60 @@ include_once '../inc/dbh.php';
     <head>
         <meta charset="UTF-8">
         <meta lang="en">
-        <title>List of words</title>
+        <title>Slovník</title>
         <link rel="stylesheet" href="../main.css">
     </head>
     <body>
-        <h1>English - Czech vocabulary</h1>
+        <h1>Česko-anglický slovník</h1>
         <section class="list">
             <div class="left-bar">
                <?php
                 if (isset($user)) {
                     echo '
                     <div class="add">
-                        <h2>Add words</h2>
+                        <h2>Přidat slovíčka</h2>
                         <form action="add.php" method="POST">
                             <input name="user" type="hidden" value="' . $user . '">
-                            <label for="add-english">English: </label><br>
+                            <label for="add-english">Anglicky: </label><br>
                             <input name="english" type="text" id="add-english"><br>
-                            <label for="add-czech">Czech: </label><br>
+                            <label for="add-czech">Česky: </label><br>
                             <input name="czech" type="text" id="add-czech"><br>
-                            <label for="add-description">Description: </label><br>
-                            <input name="description" type="text id="add-description"><br>
+                            <label for="add-description">Popis: </label><br>
+                            <input name="description" type="text" id="add-description"><br>
                             <input type="submit" class="btn">
                         </form>
                     </div>';
                 }
                 ?>
                 <div class="search">
-                    <h2>Search words</h2>
+                    <h2>Vyhledat</h2>
                     <form action="/words">
                         <input type="text" name="search"><br>
                         <input type="submit" class="btn">
                     </form>
                 </div>
                 <div class="sort">
-                    <h2>Sort words</h2>
+                    <h2>Seřadit</h2>
                     <form action="/words">
                         <p>
                         <input type="radio" id="sort-name-en" name="sortBy" value="en">
-                        <label for="sort-name-en">Name-EN</label> | 
+                        <label for="sort-name-en">A-Z (EN)</label> | 
                         <input type="radio" id="sort-name-cz" name="sortBy" value="cz">
-                        <label for="sort-name-cz">Name-CZ</label> | 
+                        <label for="sort-name-cz">A-Z (CZ)</label> | 
                         <input type="radio" id="sort-date" name="sortBy" value="date">
-                        <label for="sort-date">Date</label>
+                        <label for="sort-date">Datum</label>
                         <br>
                         <input type="radio" id="sort-ascending" name="sortOrder" value="asc">
-                        <label for="sort-ascending">Ascending</label> | 
+                        <label for="sort-ascending">Vzestupně</label> | 
                         <input type="radio" id="sort-descending" name="sortOrder" value="desc">
-                        <label for="sort-descending">Descending</label><br>
+                        <label for="sort-descending">Sestupně</label><br>
                         <input type="submit" class="btn">
                         </p>
                     </form>
                 </div>
                 <div class="restore">
                     <form action="/words">
-                        <input type="submit" class="btn" value="RESTORE ORIGINAL">
+                        <input type="submit" class="btn-large" value="OBNOVIT PŮVODNÍ">
                     </form>
                 </div>
             </div>
@@ -69,25 +69,25 @@ include_once '../inc/dbh.php';
                 <?php
                 if (isset($user)) {
                     echo '
-                        <p><b>Active user: </b>' . $user . '</p>
+                        <p><b>Aktivní uživatel: </b>' . $user . '</p>
                         <form action="../users/editUser.php" method="POST">
-                            <input type="submit" class="btn" name="confirm" value="Edit profile">
+                            <input type="submit" class="btn" name="confirm" value="Upravit profil">
                         </form>
                     ';
     
                     if ($userRole == 'superadmin') {
                         echo '
                         <form action="../users" method="POST">
-                            <input type="submit" class="btn" name="confirm" value="Manage users">
+                            <input type="submit" class="btn" name="confirm" value="Spravovat uživatele">
                         </form>';
                     }
                 }
                 else {
-                    echo '<p><b>Active user: </b>guest</p>';   
+                    echo '<p><b>Aktivní uživatel: </b>host</p>';   
                 }
                 ?>
                 <form action="../index.php">
-                    <input type="submit" class="log-out-btn" value="Log out">
+                    <input type="submit" class="btn" value="Odhlásit se">
                 </form>
             </div>
             
@@ -110,6 +110,15 @@ include_once '../inc/dbh.php';
                     $sortBy = 'en';
                     $sortOrder = 'asc';
                 }
+                # Order swap for the date format
+                if ($sortBy == 'date') {
+                    if ($sortOrder == 'asc') {
+                        $sortOrder = 'desc';
+                    }
+                    else if ($sortOrder == 'desc') {
+                        $sortOrder = 'asc';
+                    }
+                }
 
                 $sqlGetItems = "SELECT * FROM  words ORDER BY " . $sortBy . " " . $sortOrder . ";";
                 
@@ -119,16 +128,16 @@ include_once '../inc/dbh.php';
                 echo '
                 <table>
                     <tr>
-                        <th>English</th>
-                        <th>Czech</th>
-                        <th>Description</th>
-                        <th>Date of add</th>
+                        <th>Anglicky</th>
+                        <th>Česky</th>
+                        <th>Popis</th>
+                        <th>Datum přidání</th>
                 ';
                 if ($userRole == 'superadmin') {
-                    echo '<th>Added by</th>';
+                    echo '<th>Přidal</th>';
                 }
                 if (isset($user)) {
-                    echo '<th>DEL</th>';
+                    echo '<th>Smazat</th>';
                 }
                 echo '</tr>';
 
@@ -151,15 +160,15 @@ include_once '../inc/dbh.php';
                 ';
             }
             else {
-                echo '<i style="text-align: center;">No words has been found.</i>';
+                echo '<i style="text-align: center;">Žádná slovíčka nebyla nalezena.</i>';
             }
             ?>
         </section>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <section class="bottom">
-            <p>
-                <b>Daniel Franc [<a style="text-decoration: none;" href="https://github.com/dalgi116">dalgi116</a>]</b><br>
-                2021<br>
+        <p>
+                © 2021 Daniel Franc<br>
+                V případě potíží zanechte feedback <a style="text-decoration: none;" href="https://github.com/dalgi116/slovnik.unas.cz/issues">ZDE</a>.
             </p>
         </section>
     </body>

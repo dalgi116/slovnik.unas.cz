@@ -11,27 +11,27 @@ forSuperadmin($userRole);
     <head>
         <meta charset="UTF-8">
         <meta lang="en">
-        <title>Manage users</title>
+        <title>Správa uživatelů</title>
         <link rel="stylesheet" href="../main.css">
     </head>
     <body>
-        <h1>List of Users</h1>
+        <h1>Uživatelé</h1>
         <section class="list">
             <div class="left-bar">
-                <h2>Add users</h2>
+                <h2>Přidat uživatele</h2>
                 <form action="add.php" method="POST">
-                    <label for="add-user">User: </label><br>
+                    <label for="add-user">Přihlašovací jméno: </label><br>
                     <input name="user" type="text" id="add-user"><br>
-                    <label for="add-pwd">Password: </label><br>
+                    <label for="add-pwd">Heslo: </label><br>
                     <input name="pwd" type="password" id="add-pwd"><br>
-                    <label for="add-pwd2">Password again: </label><br>
+                    <label for="add-pwd2">Heslo znovu: </label><br>
                     <input name="pwd2" type="password" id="add-pwd2"><br>
                     <input type="submit" class="btn">
                 </form>
             </div>
             <div class="right-bar">
                 <form action="../words">
-                    <input type="submit" class="btn" value="GO BACK">
+                    <input type="submit" class="btn-large" value="ZPĚT">
                 </form>
             </div>
             <?php
@@ -41,9 +41,9 @@ forSuperadmin($userRole);
                 echo '
                 <table>
                     <tr>
-                        <th>User</th>
-                        <th>Role</th>
-                        <th>DEL</th>
+                        <th>Jméno</th>
+                        <th>Pozice</th>
+                        <th>Smazat</th>
                 ';
                 while ($user = $sqlResult->fetch_assoc()) {
                     echo '<tr>';
@@ -66,8 +66,8 @@ forSuperadmin($userRole);
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <section class="bottom">
             <p>
-                <b>Daniel Franc [<a style="text-decoration: none;" href="https://github.com/dalgi116">dalgi116</a>]</b><br>
-                2021<br>
+                © 2021 Daniel Franc<br>
+                V případě potíží zanechte feedback na <a style="text-decoration: none;" href="https://github.com/dalgi116/slovnik.unas.cz/issues">ZDE</a>.
             </p>
         </section>
     </body>
