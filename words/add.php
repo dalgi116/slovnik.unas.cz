@@ -24,19 +24,9 @@ else {
             header('Location: index.php?wordAdd=errorWordAlreadyUsed');
         }
         else {
-            if (strlen($pushCzech) > 20) {
-                header('Location: index.php?wordAdd=errorTooLongArgument');
-            }
-            else {
-                if (strlen($pushEnglish) > 20) {
-                    header('Location: index.php?wordAdd=errorTooLongArgument');
-                }
-                else {
-                    $mainSql = "INSERT INTO words (user, cz, en, des, date) VALUES ('$pushUser', '$pushCzech', '$pushEnglish', '$pushDescription', now());";
-                    $conn->query($mainSql);
-                    header('Location: index.php?wordAdd=success');
-                }
-            }
+            $mainSql = "INSERT INTO words (user, cz, en, des, date) VALUES ('$pushUser', '$pushCzech', '$pushEnglish', '$pushDescription', now());";
+            $conn->query($mainSql);
+            header('Location: index.php?wordAdd=success');
         }
     }
 }
