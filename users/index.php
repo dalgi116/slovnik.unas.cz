@@ -74,7 +74,7 @@ forSuperadmin($userRole);
                 ';
             }
             else {
-                echo '<i>No users has been found.</i>';
+                echo '<i>Žádní uživatelé nebyli nalezeni.</i>';
             }
             ?>
         </section>

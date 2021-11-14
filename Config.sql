@@ -6,6 +6,7 @@ CREATE TABLE words (
     cz text NOT NULL,
     en text NOT NULL,
     des text,
+    lection varchar(20) NOT NULL,
     date date NOT NULL
 );
 
@@ -16,12 +17,14 @@ INSERT INTO words (
     cz,
     en,
     des,
+    lection,
     date
 ) VALUES (
     'admin',
     'testCz',
     'testEn',
     'testDes',
+    '-default-',
     now()
 );
 
@@ -34,7 +37,7 @@ CREATE TABLE users (
     role varchar(20) NOT NULL
 );
 
-/* Test insert words */
+/* Insert superadmin */
 
 INSERT INTO users (
     user,
@@ -44,4 +47,25 @@ INSERT INTO users (
     'admin',
     '$2y$10$ZMMG07w0o2Xj.Sx7HIjGxe6EwJsrfgNzewtvvtZEindae/9C.Rd/2', /* pwd -> 01 */
     'superadmin'
+);
+
+/* Create table lections */
+
+CREATE TABLE lections (
+    id int(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name varchar(20) NOT NULL,
+    date date NOT NULL,
+    user varchar(20) NOT NULL
+);
+
+/* Insert default lection */
+
+INSERT INTO lections (
+    name,
+    date,
+    user
+) VALUES (
+    '-default-',
+    now(),
+    ''
 );

@@ -23,8 +23,12 @@ input[type="submit"] {
     background-color: var(--fill);
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], select {
     width: 80%;
+}
+
+select#add-lection {
+    width: 40%;
 }
 
 input[type="radio"] {
@@ -132,4 +136,31 @@ table {
     float: right;
     width: 2.5em;
     height: 2.5em;
+}
+
+.select-short {
+    width: 70%;
+}
+
+.btn-select {
+    position: absolute;
+    width: 10%;
+    left: 20%;
+}
+
+.a-btn {    
+    color: black;
+    width: 40%;
+    text-decoration: none;
+    border-radius: 0.2em;
+    border: none;
+    background-color: var(--fill);
+    appearance: auto;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    box-sizing: border-box;
+    padding: 1px 6px;
 }

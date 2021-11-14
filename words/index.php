@@ -41,8 +41,28 @@ include_once '../inc/dbh.php';
                             <label for="add-czech">Česky: </label><br>
                             <input name="czech" type="text" id="add-czech"><br>
                             <label for="add-description">Popis: </label><br>
-                            <input name="description" type="text" id="add-description"><br>
-                            <input type="submit" class="btn">
+                            <input name="description" type="text" id="add-description"><br>';
+
+                    echo '
+                        <label for="add-lection">Kategorie: </label><br>
+                        <select id="add-lection" name="lection">';
+                    
+                    $sqlGetItems = "SELECT * FROM lections;";
+                    $sqlResult = $conn->query($sqlGetItems);
+                    if (isset($_GET['lastLection'])) {
+                        $lastLection = $_GET['lastLection'];
+                        echo '<option value="' . $lastLection . '">' . $lastLection . '</option>';
+                    }
+
+                    while ($lection = $sqlResult->fetch_assoc()) {
+                        if ($lection['name'] !== $lastLection) {
+                            echo '<option value="' . $lection['name'] . '">' . $lection['name'] . '</option>';
+                        }
+                    }
+                    echo '
+                        </select>
+                        <a class="a-btn" href="../lections">Spravovat</a><br>
+                        <input type="submit" class="btn">
                         </form>
                     </div>';
                 }
@@ -50,7 +70,19 @@ include_once '../inc/dbh.php';
                 <div class="search">
                     <h2>Vyhledat</h2>
                     <form action="/words">
+                        <label for="search-word">Klíčové slovo: </label><br>
                         <input type="text" name="search"><br>
+                        <label for="search-lection">Kategorie: </label><br>
+                        <select id="search-lection" name="lection">
+                            <option value="None">...</option>
+                            <?php
+                            $sqlGetItems = "SELECT * FROM lections;";
+                            $sqlResult = $conn->query($sqlGetItems);
+                            while ($lection = $sqlResult->fetch_assoc()) {
+                                echo '<option value="' . $lection['name'] . '">' . $lection['name'] . '</option>';
+                            }
+                            ?>
+                        </select><br>
                         <input type="submit" class="btn">
                     </form>
                 </div>
@@ -59,11 +91,13 @@ include_once '../inc/dbh.php';
                     <form action="/words">
                         <p>
                         <input type="radio" id="sort-name-en" name="sortBy" value="en">
-                        <label for="sort-name-en">A-Z (EN)</label> | 
+                        <label for="sort-name-en">EN</label> | 
                         <input type="radio" id="sort-name-cz" name="sortBy" value="cz">
-                        <label for="sort-name-cz">A-Z (CZ)</label> | 
+                        <label for="sort-name-cz">CZ</label> | 
                         <input type="radio" id="sort-date" name="sortBy" value="date">
-                        <label for="sort-date">Datum</label>
+                        <label for="sort-date">Datum</label> |
+                        <input type="radio" id="sort-lection" name="sortBy" value="lection">
+                        <label for="sort-lection">Kategorie</label>
                         <br>
                         <input type="radio" id="sort-ascending" name="sortOrder" value="asc">
                         <label for="sort-ascending">Vzestupně</label> | 
@@ -108,7 +142,16 @@ include_once '../inc/dbh.php';
             <?php
             if (isset($_GET['search'])) {
                 $searchedWord = $_GET['search'];
-                $sqlGetItems = "SELECT * FROM  words WHERE cz = '$searchedWord' OR en = '$searchedWord';";    
+                $searchedLection = $_GET['lection'];
+                if ($searchedWord == '') {
+                    $sqlGetItems = "SELECT * FROM  words WHERE lection = '$searchedLection';";    
+                }
+                else if ($searchedLection == 'None') {
+                    $sqlGetItems = "SELECT * FROM  words WHERE cz = '$searchedWord' OR en = '$searchedWord'";    
+                }
+                else {
+                    $sqlGetItems = "SELECT * FROM  words WHERE (cz = '$searchedWord' OR en = '$searchedWord') AND lection = '$searchedLection'";
+                }
             }
             else {
                 if (isset($_GET['sortBy'])) {
@@ -145,6 +188,7 @@ include_once '../inc/dbh.php';
                         <th>Anglicky</th>
                         <th>Česky</th>
                         <th>Popis</th>
+                        <th>Lekce</th>
                         <th>Datum přidání</th>
                 ';
                 if ($userRole == 'superadmin') {
@@ -160,6 +204,7 @@ include_once '../inc/dbh.php';
                     echo '<td>' . $word['en'] . '</td>';
                     echo '<td>' . $word['cz'] . '</td>';
                     echo '<td>' . $word['des'] . '</td>';
+                    echo '<td>' . $word['lection'] . '</td>';
                     echo '<td>' . $word['date'] . '</td>';
                     if ($userRole == 'superadmin') {
                         echo '<td>' . $word['user'] . '</td>';
@@ -174,11 +219,11 @@ include_once '../inc/dbh.php';
                 ';
             }
             else {
-                echo '<i style="text-align: center;">Žádná slovíčka nebyla nalezena.</i>';
+                echo '<i>Žádná slovíčka nebyla nalezena.</i>';
             }
             ?>
         </section>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <section class="bottom">
         <p>
                 © 2021 Daniel Franc<br>
