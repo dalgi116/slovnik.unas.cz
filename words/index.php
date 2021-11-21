@@ -227,7 +227,7 @@ include_once '../inc/dbh.php';
         <section class="bottom">
         <p>
                 © 2021 Daniel Franc<br>
-                V případě potíží zanechte feedback <a style="text-decoration: none;" href="https://github.com/dalgi116/slovnik.unas.cz/issues">ZDE</a>.
+                V případě potíží zanechte feedback <a target="_blank" style="text-decoration: none;" href="https://github.com/dalgi116/slovnik.unas.cz/issues">ZDE</a>.
             </p>
         </section>
     </body>
